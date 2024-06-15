@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Need Support - UniWellness Hub</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    {{>newnav}}
+    <div class="needHelp">
+        <h2 class="need-support">Need Support?</h2>
+        <form class="support-form">
+            <label for="issue">Describe Your Issue:</label>
+            <input type="text" id="issue" name="issue">
+
+            <label for="duration">How Long Has This Been Affecting You? (in days):</label>
+            <input type="number" id="duration" name="duration">
+
+            <label for="description">Brief Description:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+
+            <label for="history">Previous History or Relevant Information:</label>
+            <textarea id="history" name="history" rows="4"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
