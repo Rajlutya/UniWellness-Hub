@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Need Support - UniWellness Hub</title>
+    <title>Support Form</title>
     <link rel="stylesheet" href="/CSS/style.css">
 </head>
 <body>
     {{>newnav}}
     <div class="needHelp">
         <h2 class="need-support">Need Support?</h2>
-        <form class="support-form">
+        <form id="supportForm" class="support-form">
             <label for="issue">Describe Your Issue:</label>
-            <input type="text" id="issue" name="issue">
+            <input type="text" id="issue" name="issue" required>
 
             <label for="duration">How Long Has This Been Affecting You? (in days):</label>
-            <input type="number" id="duration" name="duration">
+            <input type="number" id="duration" name="duration" required>
 
             <label for="description">Brief Description:</label>
-            <textarea id="description" name="description" rows="4"></textarea>
+            <textarea id="description" name="description" rows="4" required></textarea>
 
             <label for="history">Previous History or Relevant Information:</label>
             <textarea id="history" name="history" rows="4"></textarea>
@@ -26,5 +26,61 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+
+
+
+
+    <script>// script.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('supportForm');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const requestData = {
+                issue: formData.get('issue'),
+                duration: formData.get('duration'),
+                description: formData.get('description'),
+                history: formData.get('history'),
+                userId: '{{userId}}'
+            };
+
+            try {
+                const response = await fetch('/needhelp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...requestData,
+                        userId: '{{userId}}' // Add userId from session
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                console.log('Server response:', result);
+                
+                // Show success alert
+                alert('Support request submitted successfully');
+
+                // Redirect to profile page
+                window.location.href = '/profile';
+                // Optionally handle success response here (e.g., show a success message to the user)
+            } catch (error) {
+                console.error('Error sending data to server:', error.message);
+                // Optionally handle error here (e.g., show an error message to the user)
+            }
+        });
+    } else {
+        console.error('Form element "supportForm" not found.');
+    }
+});
+</script>
 </body>
 </html>

@@ -1,16 +1,13 @@
-/* Navigation Bar */
+/* General body and html styling */
 body, html {
-    height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-image: url('/Images/BG2.png'); /* Replace with your background image path */
     background-size: cover;
     background-position: center;
 }
+
+/* Navigation Bar */
 .nav {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -18,8 +15,9 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: absolute;
+    position: fixed;
     top: 0;
+    z-index: 1000;
 }
 .nav .logo {
     display: flex;
@@ -32,6 +30,7 @@ body, html {
     margin-right:10px;
     margin-left:10px;
 }
+
 .nav .nav-links {
     display: flex;
     gap: 15px;
@@ -59,7 +58,7 @@ body, html {
 .content {
     text-align: center;
     color: white;
-    margin-top: 100px; /* Adjust based on your design */
+    margin-top: 300px; /* Adjust based on your design */
 }
 .content h1 {
     font-size: 48px;
@@ -87,8 +86,11 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     text-align: center;
-    margin-top: 60px; /* Adjust based on your design */
+    margin: 60px auto; /* Center horizontally */
     width: 300px;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
 }
 .forgot-password h2 {
     margin-bottom: 20px;
@@ -120,6 +122,48 @@ body, html {
     margin-top: 10px;
 }
 
+/*Reset Password*/
+.reset-password {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    text-align: center;
+    margin: 60px auto; /* Center horizontally */
+    width: 300px;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+.reset-password h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+.reset-password input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 92%;
+    max-width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.reset-password button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+}
+.reset-password a {
+    display: block;
+    text-decoration: none;
+    color: #4CAF50;
+    margin-top: 10px;
+}
 
 
 /* Registeration Page */
@@ -129,8 +173,11 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     text-align: center;
-    margin-top: 60px; 
+    margin: 60px auto; /* Center horizontally */
     width: 300px;
+    position: relative;
+    top: 50%;
+    transform: translateY(40%);
 }
 .registration h2 {
     margin-bottom: 20px;
@@ -169,6 +216,11 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     text-align: center;
+    margin: 60px auto; /* Center horizontally */
+    width: 300px;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
 }
 .signin h2 {
     margin-bottom: 20px;
@@ -177,7 +229,7 @@ body, html {
 .signin input {
     margin: 10px 0;
     padding: 10px;
-    width: 100%;
+    width: 92%;
     max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -207,15 +259,18 @@ body, html {
     padding: 40px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     max-width: 800px;
-    margin: 100px auto; /* Center the section */
+    margin: 60px auto 0; /* 100px top margin, auto horizontal margins, 0 bottom margin */
 }
+
 .about-section h1 {
     text-align: center;
     font-size: 36px;
     color: #333;
+    margin-bottom: 20px; /* Optional: Add margin bottom to create space between h1 and p */
 }
+
 .about-section p {
     font-size: 18px;
     line-height: 1.6;
@@ -224,56 +279,139 @@ body, html {
 }
 
 
-
 /*Need Help*/
 .needHelp {
-    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 60px auto; /* Center horizontally */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
-    width: 80%;
-    max-width: 500px;
+    background: rgba(255, 255, 255, 0.8); /* Matching the background color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(10%);
 }
-
-.needHelp h2 {
-    margin-bottom: 20px;
-    text-align: center; /* Center the heading */
+.need-support {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #333;
 }
-
 .support-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-gap: 10px;
 }
-
 .support-form label {
-    text-align: left;
+    font-weight: bold;
 }
-
 .support-form input[type="text"],
 .support-form input[type="number"],
 .support-form textarea {
-    width: 90%;
-    padding: 10px;
-    margin-top: 5px;
+    width: 100%;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.support-form textarea {
+    resize: vertical;
+}
+.support-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 16px;
 }
+.support-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
 
-.support-form button {
-    padding: 10px 20px;
+
+
+/* Create Blog Page */
+
+.create-blog-container {
+    padding: 40px; /* Matching the padding */
+    background-color: rgba(255, 255, 255, 0.8); /* Matching the background color */
+    border-radius: 10px; /* Matching the border radius */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Matching the box shadow */
+    max-width: 800px; /* Matching the max-width */
+    margin: 100px auto; /* Center the container */
+    text-align: center;
+    font-size: 18px; /* Matching the font size */
+}
+
+.create-blog-container h1 {
+    text-align: center; /* Matching the text alignment */
+    font-size: 36px; /* Matching the font size */
+    color: #333; /* Matching the color */
+    margin-bottom: 20px; /* Ensure there is some space below the heading */
+}
+
+.create-blog-form input[type="text"],
+.create-blog-form textarea {
+    width: 95%; /* Ensuring the width is sufficient */
+    padding: 15px; /* Sufficient padding for input and textarea */
+    margin: 10px 0; /* Matching the spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px; /* Matching the font size */
+    color: rgb(27, 26, 26); /* Matching the text color */
+}
+
+.create-blog-form button {
+    padding: 15px 30px; /* Sufficient padding for the button */
     background-color: #4CAF50;
-    color: rgb(255, 255, 255);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 18px; /* Matching the font size */
+    margin-top: 20px; /* Adding some space above the button */
 }
 
-.support-form button:hover {
+.create-blog-form button:hover {
     background-color: #45a049;
 }
+
+/* View Blogs Page */
+.view-blogs-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 800px;
+    margin: 60px auto 0; /* Center the container horizontally and set top margin */
+    text-align: center;
+}
+.view-blogs-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.blogs-list {
+    margin-top: 20px;
+}
+.blog-post {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: left;
+}
+.blog-post h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+.blog-post p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    {{>newnav}}
+    <div class="create-blog-container">
+        <h1>Create Blog</h1>
+        <div class="create-blog-form">
+            <form id="createBlogForm">
+                <input type="text" id="blogTitle" name="title" placeholder="Blog Title" required><br>
+                <textarea id="blogContent" name="content" placeholder="Blog Content" rows="10" required></textarea><br>
+                <button type="submit">Post It!</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('createBlogForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('blogTitle').value;
+            const content = document.getElementById('blogContent').value;
+
+            fetch('/createblog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Blog created successfully');
+                    window.location.href = '/viewblogs';
+                } else {
+                    alert('Error creating blog');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error creating blog');
+            });
+        });
+    </script>
+</body>
+</html>

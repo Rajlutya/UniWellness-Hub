@@ -1,0 +1,184 @@
+/* Navigation Bar */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/Images/BG2.png'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+}
+.nav {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.nav .logo {
+    display: flex;
+    align-items: center;
+}
+.nav .logo img {
+    height: 40px; 
+    width: 40px; 
+    border-radius: 50%; 
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.nav .nav-links {
+    display: flex;
+    gap: 15px;
+}
+.nav .nav-links-center {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.nav .nav-links-right {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+/* profile.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.profile-details p {
+    margin-bottom: 10px;
+}
+
+.profile-details strong {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.profile-buttons {
+    margin-top: 20px;
+}
+
+.profile-buttons .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-buttons .button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* edit.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.edit-profile-container {
+    width: 90%;  /* Changed from max-width to width */
+    max-width: 500px;  /* Set a larger max-width */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form-group {
+    margin-bottom: 15px;
+}
+
+.edit-form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.edit-form-group input,
+.edit-form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button.edit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button.edit-button:hover {
+    background-color: #0056b3;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .edit-profile-container {
+        padding: 15px;
+    }
+}
