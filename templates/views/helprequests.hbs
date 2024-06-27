@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Requests</title>
+    <link rel="stylesheet" href="/CSS/admin.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 80px auto;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            text-align: center;
+            background-color: #ffffff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #D7E8D8;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ECEFF1;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .actions {
+            text-align: center;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+        }
+        .action-buttons form {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    {{> adminnav}}
+    <div class="container">
+        <h1>Help Requests</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>Request Date</th>
+                    <th>Request Time</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Issue</th>
+                    <th>Duration</th>
+                    <th>Description</th>
+                    <th>History</th>
+                    <th>Assign Counselor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each helpRequests}}
+                <tr>
+                    <td>{{serialNo}}</td>
+                    <td>{{dateFormatted}}</td>
+                    <td>{{timeFormatted}}</td>
+                    <td>{{studentName}}</td>
+                    <td>{{studentEmail}}</td>
+                    <td>{{issue}}</td>
+                    <td>{{duration}}</td>
+                    <td>{{description}}</td>
+                    <td>{{history}}</td>
+                    <td class="actions">
+                        <form action="/helpRequests/{{_id}}/assign" method="POST">
+                            <select name="counselorId" required>
+                                <option value="" disabled selected>Select Counselor</option>
+                                {{#each ../counselors}}
+                                <option value="{{_id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                            <button type="submit">Assign</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

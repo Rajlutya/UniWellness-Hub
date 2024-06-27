@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counselor Requests</title>
+    <link rel="stylesheet" href="/CSS/admin.css">
+    <style>
+        .container {
+            max-width: 1500px; /* Increased width */
+            margin: 80px auto;
+            margin-left: 100px;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px; 
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid #ccc; /* Border around the table */
+            margin-left: 50px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            text-align: center;
+            background-color: #ffffff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #D7E8D8; /* Lighter shade of green */
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ECEFF1; /* Main background color */
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .actions {
+            text-align: center;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+        }
+        .action-buttons form {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    {{> adminnav}} <!-- Assuming adminnav is a partial for navigation -->
+    <div class="container">
+        <h1>Counselor Requests</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>Registration Date</th>
+                    <th>Registration Time</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Degree</th>
+                    <th>Experience</th>
+                    <th>Other Details</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each counselors}}
+                <tr>
+                    <td>{{serialNo}}</td>
+                    <td>{{dateFormatted}}</td>
+                    <td>{{timeFormatted}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{degree}}</td>
+                    <td>{{experience}}</td>
+                    <td>{{otherDetails}}</td>
+                    <td class="actions">
+                        <div class="action-buttons">
+                            <form action="/counselorsrequests/{{_id}}/verify" method="POST">
+                                <button type="submit" name="action" value="accept">Accept</button>
+                            </form>
+                            <form action="/counselorsrequests/{{_id}}/verify" method="POST">
+                                <button type="submit" name="action" value="reject">Reject</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

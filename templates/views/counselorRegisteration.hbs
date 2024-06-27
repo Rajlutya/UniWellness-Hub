@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniWellness Hub - Counselor Registration</title>
+    <link rel="stylesheet" href="/CSS/counselor.css">
+</head>
+<body>
+    {{> counselornav}}
+    <div class="registration">
+        <h2>Counselor Registration</h2>
+        <form id="counselorRegistrationForm">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="phone" placeholder="Contact No." required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="degree" placeholder="Degree" required>
+            <input type="number" name="experience" placeholder="Years of Experience" required>
+            <input type="text" name="otherDetails" placeholder="Other Details">
+            <button type="submit">Register</button>
+        </form>
+        <a href="/signInCounselor">Already Registered?</a>
+    </div>
+
+    <script>
+        document.getElementById('counselorRegistrationForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Example of sending JSON data to the backend using fetch API
+            try {
+                const response = await fetch('/registerCounselor', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert(result.message);
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                // Handle error
+                console.error('There was a problem with the fetch operation:', error);
+                alert("There was a problem with the registration process. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

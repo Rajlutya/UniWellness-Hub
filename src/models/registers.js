@@ -24,7 +24,16 @@ const studentSchema = new mongoose.Schema({
     },
     gender: {
         type: String
-    }
+    },
+    otp: {
+        type: String,
+        default: null
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    },
 });
 
 const Register = mongoose.model("Register", studentSchema);

@@ -1,3 +1,4 @@
+<!-- registrationpage.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniWellness Hub - Registration</title>
     <link rel="stylesheet" href="/CSS/style.css">
+    <style>
+    .otp-verification {
+        width: 300px;
+        margin: 150px auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .otp-verification h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .otp-verification form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .otp-verification input {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .otp-verification button {
+        padding: 10px;
+        background: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .otp-verification button:hover {
+        background: #218838;
+    }
+
+    .otp-verification a {
+        text-align: center;
+        display: block;
+        margin-top: 10px;
+        color: #28a745;
+        text-decoration: none;
+    }
+</style>
+
 </head>
 <body>
     {{>navbar}}
-    <div class="registration">
+    <div class="registration" id="temp">
         <h2>Register</h2>
         <form id="registrationForm">
             <input type="text" name="name" placeholder="Name" required>
@@ -20,42 +71,78 @@
         <a href="/signIn">Already Registered?</a>
     </div>
 
+    <div id="otpVerification" class="otp-verification" style="display: none;">
+        <h2>Verify OTP</h2>
+        <form id="otpForm">
+            <input type="text" name="otp" placeholder="OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+
     <script>
+        let tempId = '';
+
         document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
+            event.preventDefault();
+
             const form = event.target;
             const formData = new FormData(form);
-            const jsonObject = {};
-            
+            const jsonData = {};
+
             formData.forEach((value, key) => {
-                jsonObject[key] = value;
+                jsonData[key] = value;
             });
 
-            const jsonData = JSON.stringify(jsonObject);
-
-            // Now you can use `jsonData` to send it to the backend
-            console.log(jsonData);
-
-            // Example of sending JSON data to the backend using fetch API
             try {
                 const response = await fetch('/registers', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: jsonData
+                    body: JSON.stringify(jsonData)
                 });
+
                 const result = await response.json();
                 if (result.success) {
                     alert(result.message);
+                    tempId = result.tempId;
+                    document.getElementById('temp').style.display = 'none';
+                    document.getElementById('otpVerification').style.display = 'block';
                 } else {
                     alert(result.message);
                 }
             } catch (error) {
-                // Handle error
-                console.error('There was a problem with the fetch operation:', error);
-                alert("There was a problem with the registration process. Please try again.");
+                console.error('Registration error:', error);
+                alert('There was an error with the registration process. Please try again.');
+            }
+        });
+
+        document.getElementById('otpForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const jsonData = { otp: formData.get('otp'), tempId: tempId };
+
+            try {
+                const response = await fetch('/verify-otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert(result.message);
+                    window.location.href = '/signIn';
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('OTP verification error:', error);
+                alert('There was an error with the OTP verification process. Please try again.');
             }
         });
     </script>

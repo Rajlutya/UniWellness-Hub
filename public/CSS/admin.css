@@ -1,0 +1,52 @@
+/* General body and html styling */
+body, html {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/Images/BG2.png'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Navigation Bar */
+.nav {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.nav .logo {
+    display: flex;
+    align-items: center;
+}
+.nav .logo img {
+    height: 40px; 
+    width: 40px; 
+    border-radius: 50%; 
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.nav .nav-links-center {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.nav .nav-links-right {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+}

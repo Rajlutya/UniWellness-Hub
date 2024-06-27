@@ -30,57 +30,50 @@
 
 
 
-    <script>// script.js
+    <script>document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('supportForm');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
 
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('supportForm');
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+                    const formData = new FormData(form);
+                    const requestData = {
+                        issue: formData.get('issue'),
+                        duration: parseInt(formData.get('duration')),
+                        description: formData.get('description'),
+                        history: formData.get('history'),
+                    };
 
-            const formData = new FormData(form);
-            const requestData = {
-                issue: formData.get('issue'),
-                duration: formData.get('duration'),
-                description: formData.get('description'),
-                history: formData.get('history'),
-                userId: '{{userId}}'
-            };
+                    try {
+                        const response = await fetch('/needhelp', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(requestData)
+                        });
 
-            try {
-                const response = await fetch('/needhelp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        ...requestData,
-                        userId: '{{userId}}' // Add userId from session
-                    })
+                        if (!response.ok) {
+                            throw new Error('Server responded with error status ' + response.status);
+                        }
+
+                        const result = await response.json();
+                        console.log('Server response:', result);
+                        
+                        // Show success alert
+                        alert('Support request submitted successfully');
+
+                        // Redirect to profile page or another appropriate page
+                        window.location.href = '/profile';
+                    } catch (error) {
+                        console.error('Error sending data to server:', error.message);
+                        alert('Failed to submit support request. Please try again later.');
+                    }
                 });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const result = await response.json();
-                console.log('Server response:', result);
-                
-                // Show success alert
-                alert('Support request submitted successfully');
-
-                // Redirect to profile page
-                window.location.href = '/profile';
-                // Optionally handle success response here (e.g., show a success message to the user)
-            } catch (error) {
-                console.error('Error sending data to server:', error.message);
-                // Optionally handle error here (e.g., show an error message to the user)
+            } else {
+                console.error('Form element "supportForm" not found.');
             }
         });
-    } else {
-        console.error('Form element "supportForm" not found.');
-    }
-});
 </script>
 </body>
 </html>
