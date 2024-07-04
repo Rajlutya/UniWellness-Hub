@@ -1,5 +1,6 @@
 const Register = require('../src/models/registers');
 const SupportRequest = require('../src/models/supportRequest');
+const Counselor = require('../src/models/counselors');
 const moment = require('moment');
 
 exports.viewProfile = async (req, res) => {
@@ -80,14 +81,17 @@ exports.viewPastHistory = async (req, res) => {
             return res.redirect('/signin'); // Redirect to login if not authenticated
         }
 
-        // Fetch all support requests for the logged-in user
-        const supportRequests = await SupportRequest.find({ userId }).sort({ createdAt: -1 });
+        // Fetch all support requests for the logged-in user and populate counselor field
+        const supportRequests = await SupportRequest.find({ userId })
+            .populate('counselor') // Populate the counselor field with details from Counselor model
+            .sort({ createdAt: -1 });
 
         // Format createdAt dates and times
         const formattedSupportRequests = supportRequests.map(request => ({
             ...request.toObject(),
             formattedDate: moment(request.createdAt).format('DD/MM/YY'),
-            formattedTime: moment(request.createdAt).format('hh:mm A')
+            formattedTime: moment(request.createdAt).format('hh:mm A'),
+            counselorName: request.counselor ? request.counselor.name : 'Not Assigned' // Access counselor name or show 'Not Assigned'
         }));
 
         // Render pasthistory.hbs with formattedSupportRequests data

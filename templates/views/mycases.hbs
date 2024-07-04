@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Request History</title>
-    <link rel="stylesheet" href="/CSS/style.css">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="/CSS/counselor.css">
     <style>
-        /* Additional styles specific to pasthistory page */
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 80px auto;
         }
         .container h1 {
             text-align: center;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            border: 2px solid #ccc; /* Border around the table */
+            border: 2px solid #ccc;
         }
         th, td {
             border: 1px solid #ccc;
@@ -31,37 +30,37 @@
             background-color: #ffffff;
         }
         tbody tr:nth-child(even) {
-            background-color: #D7E8D8; /* Lighter shade of green */
+            background-color: #D7E8D8;
         }
         tbody tr:nth-child(odd) {
-            background-color: #ECEFF1; /* Main background color */
+            background-color: #ECEFF1;
         }
     </style>
 </head>
 <body>
-    {{> newnav}}
+    {{> nevcounselor}}
     <div class="container">
-        <h1>Past History</h1>
+        <h1>Student Details</h1>
         <table>
             <thead>
                 <tr>
+                    <th>Serial No.</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Name</th>
                     <th>Issue</th>
                     <th>Description</th>
-                    <th>Counselor</th>
-                    <th>Prescription</th>
                 </tr>
             </thead>
-            <tbody id="supportRequests">
-                {{#each supportRequests}}
+            <tbody>
+                {{#each studentDetails}}
                 <tr>
-                    <td>{{this.formattedDate}}</td>
-                    <td>{{this.formattedTime}}</td>
-                    <td>{{this.issue}}</td>
-                    <td>{{this.description}}</td>
-                    <td>{{this.counselorName}}</td>
-                    <td>{{this.prescription}}</td>
+                    <td>{{serialNo}}</td>
+                    <td>{{date}}</td>
+                    <td>{{time}}</td>
+                    <td><a href="/profile/{{studentId}}">{{studentName}}</a></td>
+                    <td>{{issue}}</td>
+                    <td>{{description}}</td>
                 </tr>
                 {{/each}}
             </tbody>

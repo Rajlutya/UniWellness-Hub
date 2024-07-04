@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Requests List</title>
+    <link rel="stylesheet" href="/CSS/counselor.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 80px auto;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            text-align: center;
+            background-color: #ffffff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #D7E8D8;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ECEFF1;
+        }
+        .prescription {
+            max-width: 300px;
+            overflow-wrap: break-word;
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 60px; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {{>nevcounselor}}
+    <div class="container">
+        <h1>Help Requests List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Issue</th>
+                    <th>Number of Days</th>
+                    <th>Description</th>
+                    <th>Prescription</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each helpRequests}}
+                <tr>
+                    <td>{{serialNo}}</td>
+                    <td><a href="/profile/{{studentId}}">{{studentName}}</a></td>
+                    <td>{{studentAge}}</td>
+                    <td>{{issue}}</td>
+                    <td>{{duration}}</td>
+                    <td>{{description}}</td>
+                    <td>
+                        <span>{{prescription}}</span>
+                        <button onclick="openModal('{{_id}}', '{{prescription}}')">Edit</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- The Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="editPrescriptionForm" method="POST" action="/updatePrescription">
+                <input type="hidden" id="helpRequestId" name="helpRequestId" value="">
+                <label for="prescription">Prescription</label>
+                <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id, prescription) {
+            document.getElementById('helpRequestId').value = id;
+            document.getElementById('prescription').value = prescription;
+            document.getElementById('editModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('editModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

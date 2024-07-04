@@ -8,7 +8,7 @@ const adminController = require('../controllers/adminController');
 const studentsController = require('../controllers/studentsController');
 const counselorController = require('../controllers/registercounselorController'); 
 const auth = require('../middleware/auth'); 
-const { getHelpRequests, assignCounselor } = require('../controllers/helpRequestsController');
+const helpRequestsController = require('../controllers/helpRequestsController');
 
 
 const Register = require('../src/models/registers'); 
@@ -96,13 +96,26 @@ router.get('/counselors', async (req, res) => {
 
 
 
-router.get('/helpRequests', getHelpRequests);
-router.post('/helpRequests/:id/assign', assignCounselor);
+router.get('/helpRequests', helpRequestsController.getHelpRequests);
+router.post('/helpRequests/:id/assign', helpRequestsController.assignCounselor);
 
 router.post('/verify-otp', registerController.verifyOTP);
 
 
 router.get("/counselorcreateblog", blogController.counselorCreateBlogForm);
 router.post("/counselorcreateblog", blogController.createBlog);
+
+
+
+router.get('/helpRequestsList',auth, helpRequestsController.getHelpRequestsList);
+router.post('/updatePrescription', helpRequestsController.updatePrescription);
+router.get('/myCases', auth, helpRequestsController.getPastCases);
+
+
+
+router.get("/counselorforgotpassword", counselorController.counselorforgotPasswordForm);
+router.post('/counselorforgotpassword', counselorController.counselorforgotPassword);
+router.get('/counselorreset/:token', counselorController.counselorresetPasswordForm);
+router.post('/counselorreset/:token', counselorController.counselorresetPassword);
 
 module.exports = router;

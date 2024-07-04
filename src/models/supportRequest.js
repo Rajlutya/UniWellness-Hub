@@ -21,8 +21,9 @@ const supportRequestSchema = new mongoose.Schema({
         ref: 'Register', // Reference to the Register model
         required: true
     },
-    counsellor: {
-        type: String,
+    counselor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Counselor' // Reference to the Counselor model
     },
     prescription: {
         type: String,

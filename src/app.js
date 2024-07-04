@@ -415,6 +415,8 @@ const port = 3000;
 
 require("./db/conn");
 const routes = require("../routes/index");
+const registerController = require("../controllers/registerController");
+const registerCounselorController = require("../controllers/registerCounselorController");
 
 // Paths for static files and templates
 const static_path = path.join(__dirname, "../public");
@@ -445,6 +447,8 @@ app.use(bodyParser.json());
 
 // Use routes
 app.use('/', routes);
+app.post('/signIn', registerController.signInUser);
+app.post('/signInCounselor', registerCounselorController.signInCounselor);
 
 app.listen(port, () => {
     console.log(`Listening to the port at ${port}`);

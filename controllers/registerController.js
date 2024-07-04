@@ -150,6 +150,7 @@ exports.signInUser = async (req, res) => {
     }
 };
 
+
 exports.forgotPasswordForm = (req, res) => {
     res.render('forgotpassword');
 };
