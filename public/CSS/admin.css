@@ -7,7 +7,6 @@ body, html {
     background-position: center;
 }
 
-
 /* Navigation Bar */
 .nav {
     width: 100%;
@@ -49,4 +48,405 @@ body, html {
     background-color: black;
     padding: 10px 20px;
     border-radius: 5px;
+}
+
+.nav a:hover {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+
+.nav a.active {
+    background-color: black;
+    color: black;
+}
+
+
+
+/* Create Blog Page */
+.create-blog-container {
+    padding: 40px; /* Matching the padding */
+    background-color: rgba(255, 255, 255, 0.8); /* Matching the background color */
+    border-radius: 10px; /* Matching the border radius */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Matching the box shadow */
+    max-width: 800px; /* Matching the max-width */
+    margin: 100px auto; /* Center the container */
+    text-align: center;
+    font-size: 18px; /* Matching the font size */
+}
+
+.create-blog-container h1 {
+    text-align: center; /* Matching the text alignment */
+    font-size: 36px; /* Matching the font size */
+    color: #333; /* Matching the color */
+    margin-bottom: 20px; /* Ensure there is some space below the heading */
+}
+
+.create-blog-form input[type="text"],
+.create-blog-form textarea {
+    width: 95%; /* Ensuring the width is sufficient */
+    padding: 15px; /* Sufficient padding for input and textarea */
+    margin: 10px 0; /* Matching the spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px; /* Matching the font size */
+    color: rgb(27, 26, 26); /* Matching the text color */
+}
+
+.create-blog-form button {
+    padding: 15px 30px; /* Sufficient padding for the button */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Matching the font size */
+    margin-top: 20px; /* Adding some space above the button */
+}
+
+.create-blog-form button:hover {
+    background-color: #45a049;
+}
+
+
+
+/*Students List(Name of All Students)*/
+.students {
+    max-width: 800px;
+    margin: 80px auto;
+}
+.students h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.students table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+.students th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.students th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.students tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+.students tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+.students a {
+    color: black;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+
+.students .search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.students .search-container input[type=text] {
+    padding: 10px;
+    width: 50%;
+    margin-right: 10px;
+}
+.students .search-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.students .search-container button:hover {
+    background-color: #45a049;
+}
+
+
+
+/*Students Profile*/
+.studentsProfile {
+    max-width: 800px;
+    margin: 80px auto;
+}
+.studentsProfile h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.studentsProfile table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+.studentsProfile th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.studentsProfile th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.studentsProfile tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+.studentsProfile tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+.studentsProfile a {
+    color: black;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+.studentsProfile .basic-details {
+    margin-bottom: 40px;
+}
+.studentsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.studentsProfile .basic-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+.studentsProfile .basic-details li {
+    margin-bottom: 8px;
+}
+.studentsProfile .basic-details {
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+.studentsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+/*CounselorsRequests*/
+.counselorRequests {
+    max-width: 1200px; /* Increased width */
+    margin: 80px auto;
+    margin-left: 70px;
+}
+.counselorRequests h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.counselorRequests table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+.counselorRequests th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.counselorRequests th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.counselorRequests tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+.counselorRequests tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+.counselorRequests a {
+    color: black;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+.counselorRequests button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.counselorRequests button:hover {
+    background-color: #0056b3;
+}
+.counselorRequests .actions {
+    text-align: center;
+}
+.counselorRequests .action-buttons {
+    display: flex;
+    justify-content: center;
+}
+.counselorRequests .action-buttons form {
+    margin: 0 5px;
+}
+
+
+
+/*Counselors List*/
+.counselorsList {
+    max-width: 1000px; /* Increased width */
+    margin: 80px auto;
+}
+.counselorsList h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.counselorsList table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+.counselorsList th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.counselorsList th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.counselorsList tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+.counselorsList tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+.counselorsList a {
+    color: black;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+
+
+
+/*HelpRequests ---> Assign Counselor*/
+.helpRequests {
+    max-width: 1000px;
+    margin: 80px auto;
+}
+.helpRequests h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.helpRequests table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+.helpRequests th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.helpRequests th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.helpRequests tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+.helpRequests tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+.helpRequests a {
+    color: black;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+
+.helpRequests button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.helpRequests button:hover {
+    background-color: #0056b3;
+}
+.helpRequests .actions {
+    text-align: center;
+}
+.helpRequests .action-buttons {
+    display: flex;
+    justify-content: center;
+}
+.helpRequests .action-buttons form {
+    margin: 0 5px;
+}
+
+
+
+/*Counselor's Profie*/
+.counselorsProfile {
+    max-width: 1000px;
+    margin: 80px auto;
+}
+.counselorsProfile h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.counselorsProfile .basic-details {
+    margin-bottom: 40px;
+}
+.counselorsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.counselorsProfile .basic-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+.counselorsProfile .basic-details li {
+    margin-bottom: 8px;
+}
+.counselorsProfile table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+}
+.counselorsProfile th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.counselorsProfile th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.counselorsProfile tbody tr:nth-child(even) {
+    background-color: #D7E8D8;
+}
+.counselorsProfile tbody tr:nth-child(odd) {
+    background-color: #ECEFF1;
+}
+.counselorsProfile .basic-details {
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+.counselorsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }

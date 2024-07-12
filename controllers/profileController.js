@@ -87,10 +87,12 @@ exports.viewPastHistory = async (req, res) => {
             .sort({ createdAt: -1 });
 
         // Format createdAt dates and times
-        const formattedSupportRequests = supportRequests.map(request => ({
+        const formattedSupportRequests = supportRequests.map((request,index) => ({
             ...request.toObject(),
+            SerialNo: index+1,
             formattedDate: moment(request.createdAt).format('DD/MM/YY'),
             formattedTime: moment(request.createdAt).format('hh:mm A'),
+            type: request.counselor ? request.counselor.type : '',
             counselorName: request.counselor ? request.counselor.name : 'Not Assigned' // Access counselor name or show 'Not Assigned'
         }));
 

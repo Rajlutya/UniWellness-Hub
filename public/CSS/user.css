@@ -1,0 +1,217 @@
+/* General body and html styling */
+body, html {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/Images/BG2.png'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+/* Navigation Bar */
+.nav {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.nav .logo {
+    display: flex;
+    align-items: center;
+}
+.nav .logo img {
+    height: 40px; 
+    width: 40px; 
+    border-radius: 50%; 
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.nav .nav-links {
+    display: flex;
+    gap: 15px;
+}
+.nav .nav-links-center {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.nav .nav-links-right {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.nav a:hover {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+
+.nav a.active {
+    background-color: black;
+    color: black;
+}
+
+
+
+
+/*Need Help*/
+.needHelp {
+    max-width: 600px;
+    margin: 60px auto; /* Center horizontally */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Matching the background color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(10%);
+}
+.need-support {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #333;
+}
+.support-form {
+    display: grid;
+    grid-gap: 10px;
+}
+.support-form label {
+    font-weight: bold;
+}
+.support-form input[type="text"],
+.support-form input[type="number"],
+.support-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.support-form textarea {
+    resize: vertical;
+}
+.support-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.support-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+
+/* View Blogs Page */
+.view-blogs-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 800px;
+    margin: 60px auto 0; /* Center the container horizontally and set top margin */
+    text-align: center;
+}
+.view-blogs-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.blogs-list {
+    margin-top: 20px;
+}
+.blog-post {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: left;
+}
+.blog-post h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+.blog-post p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+
+
+/*Past History*/
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+}
+.container h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Border around the table */
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    text-align: center;
+    background-color: #ffffff;
+}
+tbody tr:nth-child(even) {
+    background-color: #D7E8D8; /* Lighter shade of green */
+}
+tbody tr:nth-child(odd) {
+    background-color: #ECEFF1; /* Main background color */
+}
+
+
+
+/*About Us Page*/
+.about-section {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 60px auto 0; /* 100px top margin, auto horizontal margins, 0 bottom margin */
+}
+
+.about-section h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px; /* Optional: Add margin bottom to create space between h1 and p */
+}
+
+.about-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+}

@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Request History</title>
-    <link rel="stylesheet" href="/CSS/user.css">
+    <title>{{student.name}}'s Profile</title>
+    <link rel="stylesheet" href="/CSS/counselor.css">
 </head>
 <body>
-    {{> newnav}}
-    <div class="container">
-        <h1>Past History</h1>
+    {{> nevcounselor}}
+    <div class="studentsProfile">
+        <h1>{{student.name}}'s Profile</h1>
+        
+        <!-- Basic Details Section -->
+        <div class="basic-details">
+            <h2>Basic Details</h2>
+            <ul>
+                <li>Name: {{student.name}}</li>
+                <li>Email: {{student.email}}</li>
+                <li>Phone: {{student.phone}}</li>
+                <li>Age: {{student.age}}</li>
+                <li>Gender: {{student.gender}}</li>
+                <li>Role: {{student.role}}</li>
+            </ul>
+        </div>
+        
+        <!-- Past History Section -->
+        <h2>Past History</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Serial No</th>
+                    <th>Serial No.</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Issue</th>
@@ -23,8 +39,8 @@
                     <th>Prescription</th>
                 </tr>
             </thead>
-            <tbody id="supportRequests">
-                {{#each supportRequests}}
+            <tbody>
+                {{#each pastHistory}}
                 <tr>
                     <td>{{this.SerialNo}}</td>
                     <td>{{this.formattedDate}}</td>

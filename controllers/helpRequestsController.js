@@ -14,8 +14,9 @@ exports.getHelpRequests = async (req, res) => {
             serialNo: index + 1,
             dateFormatted: moment(request.createdAt).format('DD-MM-YYYY'),
             timeFormatted: moment(request.createdAt).format('hh:mm A'),
-            studentName: request.userId.name,
-            studentEmail: request.userId.email,
+            studentId: request.userId ? request.userId._id : 'Unknown',
+            studentName: request.userId ? request.userId.name : 'Unknown',
+            studentEmail: request.userId ? request.userId.email : 'Unknown',
         }));
 
         // Render the helpRequests view with the filtered and formatted data
@@ -55,6 +56,7 @@ exports.getHelpRequestsList = async (req, res) => {
 
 
         const formattedHelpRequests = helpRequests.map((request, index) => ({
+            _id: request._id,
             serialNo: index + 1,
             studentId: request.userId ? request.userId._id : 'Unknown',
             studentName: request.userId ? request.userId.name : 'Unknown',
@@ -72,17 +74,38 @@ exports.getHelpRequestsList = async (req, res) => {
     }
 };
 
-exports.updatePrescription = async (req, res) => {
-    const { helpRequestId, prescription } = req.body;
-
-    console.log('helpRequestId:', helpRequestId); // Debug log to check the value
-
-    if (!helpRequestId) {
-        return res.status(400).send('Invalid help request ID');
-    }
+exports.getPrescriptionPage = async (req, res) => {
+    const { id } = req.params;
 
     try {
-        await SupportRequest.findByIdAndUpdate(helpRequestId, { prescription });
+        const request = await SupportRequest.findById(id).populate('userId');
+
+        if (!request) {
+            return res.status(404).send('Support request not found');
+        }
+
+        const formattedRequest = {
+            _id: request._id,
+            studentName: request.userId ? request.userId.name : 'Unknown',
+            issue: request.issue,
+            duration: request.duration,
+            description: request.description,
+            prescription: request.prescription,
+        };
+
+        res.render('editPrescription', { request: formattedRequest });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+};
+
+exports.savePrescription = async (req, res) => {
+    const { id } = req.params;
+    const { prescription } = req.body;
+
+    try {
+        await SupportRequest.findByIdAndUpdate(id, { prescription });
         res.redirect('/helpRequestsList');
     } catch (err) {
         console.error(err);
@@ -93,21 +116,21 @@ exports.updatePrescription = async (req, res) => {
 exports.getPastCases = async (req, res) => {
     try {
         const counselorId = req.user._id;
-
-        // Fetch details for a particular student where description exists or not
         const studentDetails = await SupportRequest.find({
             counselor: counselorId,
-            // Add conditions as needed, like date range or specific conditions
-            // Example: description: { $exists: true } for where description exists
         }).populate('userId');
+
+        studentDetails.sort((a, b) => b.createdAt - a.createdAt);
 
         const formattedStudentDetails = studentDetails.map((request, index) => ({
             serialNo: index + 1,
             date: moment(request.createdAt).format('DD/MM/YY'),
             time: moment(request.createdAt).format('hh:mm A'),
-            studentName: request.userId ? request.userId.name : 'Unknown',
+            studentId: request.userId._id,
+            studentName: request.userId.name,
             issue: request.issue,
             description: request.description,
+            prescription: request.prescription,
         }));
 
         res.render('myCases', { studentDetails: formattedStudentDetails });

@@ -1,4 +1,5 @@
 const Counselor = require('../src/models/counselors');
+const SupportRequest = require('../src/models/supportRequest');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const moment = require('moment'); 
@@ -10,6 +11,7 @@ exports.registerCounselor = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             password: req.body.password,
+            type: req.body.type,
             degree: req.body.degree,
             experience: req.body.experience,
             otherDetails: req.body.otherDetails
@@ -17,7 +19,7 @@ exports.registerCounselor = async (req, res) => {
         const registeredCounselor = await newCounselor.save();
         return res.status(201).json({
             success: true,
-            message: "Your application has been submitted succesfully",
+            message: "Your application has been submitted successfully",
         });
     } catch (error) {
         console.error(error);
@@ -37,6 +39,13 @@ exports.signInCounselor = async (req, res) => {
             return res.status(400).json({ 
                 success: false, 
                 message: "Counselor not found" 
+            });
+        }
+
+        if (!counselor.profileVerified) {
+            return res.status(400).json({
+                success: false,
+                message: "Profile not approved"
             });
         }
 
@@ -97,9 +106,6 @@ exports.postCounselorsVerification = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
-
-
-
 
 
 exports.counselorforgotPasswordForm = (req, res) => {
@@ -196,5 +202,109 @@ exports.counselorresetPassword = async (req, res) => {
     } catch (error) {
         console.error('Error in /counselorreset/:token POST:', error);
         res.status(500).send('Server error');
+    }
+};
+
+
+
+exports.signOutCounselor = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({
+                success: false,
+                message: "There was a problem with the sign-out process. Please try again.",
+            });
+        }
+        res.redirect('/signInCounselor');
+    });
+};
+
+
+exports.getCounselorProfile = async (req, res) => {
+    try {
+        const counselorId = req.params.id;
+
+        // Fetch counselor details from the database
+        const counselor = await Counselor.findById(counselorId);
+        if (!counselor) {
+            return res.status(404).send('Counselor not found');
+        }
+
+        // Fetch past cases assigned to this counselor, sorted by createdAt descending
+        const pastCases = await SupportRequest.find({
+            counselor: counselorId
+        }).populate('userId').sort({ createdAt: -1 });
+
+        // Format pastCases data for rendering
+        const formattedPastCases = pastCases.map((request, index) => ({
+            serialNumber: index + 1,
+            date: moment(request.createdAt).format('DD/MM/YY'),
+            time: moment(request.createdAt).format('hh:mm A'),
+            studentId: request.userId ? request.userId._id : 'Unknown',
+            studentName: request.userId ? request.userId.name : 'Unknown',
+            issue: request.issue,
+            description: request.description,
+            prescription: request.prescription
+        }));
+
+        // Render counselorProfile.hbs with counselor and pastCases data
+        res.render('counselorsProfile', {
+            counselor,
+            pastCases: formattedPastCases
+        });
+
+    } catch (error) {
+        console.error('Error fetching counselor profile:', error);
+        res.status(500).send('Server Error');
+    }
+};
+
+
+exports.getCounselors = async (req, res) => {
+    try {
+        const counselors = await Counselor.find({ profileVerified: true }).sort({ type: 1 });
+        const formattedCounselors = counselors.map((counselor, index) => ({
+            ...counselor.toObject(),
+            serialNo: index + 1
+        }));
+        res.render('counselors', { counselors: formattedCounselors });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+};
+
+
+exports.getCounselorRequests = async (req, res) => {
+    try {
+        const counselors = await Counselor.find({ profileVerified: false });
+        const formattedCounselors = counselors.map((counselor, index) => ({
+            ...counselor.toObject(),
+            serialNo: index + 1,
+            dateFormatted: moment(counselor.createdAt).format('DD-MM-YYYY'),
+            timeFormatted: moment(counselor.createdAt).format('hh:mm A')
+        }));
+        res.render('counselorRequests', { counselors: formattedCounselors });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+};
+
+exports.updateProfileVerification = async (req, res) => {
+    const { id } = req.params;
+    const { action } = req.body;
+
+    try {
+        if (action === 'accept') {
+            await Counselor.findByIdAndUpdate(id, { profileVerified: true });
+        } else if (action === 'reject') {
+            await Counselor.findByIdAndDelete(id);
+        }
+        res.redirect('/counselorsrequests');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
     }
 };

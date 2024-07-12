@@ -26,21 +26,13 @@
 
             const form = event.target;
             const formData = new FormData(form);
-            /*const jsonObject = {};
-
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
-            });
-
-            const jsonData = JSON.stringify(jsonObject);
-            console.log(jsonData);*/
 
             const data = {
                 email: formData.get('email'),
                 password: formData.get('password')
             };
 
-            // Example of sending JSON data to the backend using fetch API
+            //Sending JSON data to the backend using fetch API
             try {
                 const response = await fetch('/signin', {
                     method: 'POST',

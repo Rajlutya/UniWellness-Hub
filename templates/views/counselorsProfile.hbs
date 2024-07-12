@@ -3,52 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{student.name}}'s Profile</title>
+    <title>{{counselor.name}}'s Profile</title>
     <link rel="stylesheet" href="/CSS/admin.css">
 </head>
 <body>
-    {{> adminnav}}
-    <div class="studentsProfile">
-        <h1>{{student.name}}'s Profile</h1>
+    {{>adminnav}}
+    <div class="counselorsProfile">
+        <h1>{{counselor.name}}'s Profile</h1>
         
         <!-- Basic Details Section -->
         <div class="basic-details">
             <h2>Basic Details</h2>
             <ul>
-                <li>Name: {{student.name}}</li>
-                <li>Email: {{student.email}}</li>
-                <li>Phone: {{student.phone}}</li>
-                <li>Age: {{student.age}}</li>
-                <li>Gender: {{student.gender}}</li>
-                <li>Role: {{student.role}}</li>
+                <li>Name: {{counselor.name}}</li>
+                <li>Email: {{counselor.email}}</li>
+                <li>Phone: {{counselor.phone}}</li>
+                <li>Type: {{counselor.type}}</li>
+                <li>Degree: {{counselor.degree}}</li>
+                <li>Experience: {{counselor.experience}} years</li>
             </ul>
         </div>
         
-        <!-- Past History Section -->
-        <h2>Past History</h2>
+        <!-- Past Cases Section -->
+        <h2>Past Cases</h2>
         <table>
             <thead>
                 <tr>
                     <th>Serial No.</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Student Name</th>
                     <th>Issue</th>
                     <th>Description</th>
-                    <th>Type</th>
-                    <th>Counselor</th>
                     <th>Prescription</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each pastHistory}}
+                {{#each pastCases}}
                 <tr>
-                    <td>{{this.SerialNo}}</td>
-                    <td>{{this.formattedDate}}</td>
-                    <td>{{this.formattedTime}}</td>
+                    <td>{{this.serialNumber}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.time}}</td>
+                    <td>{{this.studentName}}</td>
                     <td>{{this.issue}}</td>
                     <td>{{this.description}}</td>
-                    <td>{{this.type}}</td>
-                    <td>{{this.counselorName}}</td>
                     <td>{{this.prescription}}</td>
                 </tr>
                 {{/each}}

@@ -25,6 +25,14 @@ const generateOTP = () => {
 exports.registerUser = async (req, res) => {
     try {
         const { name, email, phone, password } = req.body;
+
+        if (phone.length !== 10) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid Phone Number.',
+            });
+        }
+
         const otp = generateOTP();
         const tempId = crypto.randomBytes(16).toString('hex');
 
@@ -93,20 +101,6 @@ exports.verifyOTP = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.signInUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -125,7 +119,7 @@ exports.signInUser = async (req, res) => {
                 return res.status(200).json({
                     success: true,
                     message: "Sign in successful",
-                    redirectUrl: '/admin'
+                    redirectUrl: '/helpRequests'
                 });
             } else {
                 return res.status(200).json({
@@ -246,4 +240,18 @@ exports.resetPassword = async (req, res) => {
         console.error('Error in /reset/:token POST:', error);
         res.status(500).send('Server error');
     }
+};
+
+
+exports.signOutUser = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error logging out:', err);
+            return res.status(500).json({
+                success: false,
+                message: 'Failed to log out.',
+            });
+        }
+        res.redirect('/signIn');
+    });
 };

@@ -5,42 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details</title>
     <link rel="stylesheet" href="/CSS/counselor.css">
-    <style>
-        .container {
-            max-width: 1000px;
-            margin: 80px auto;
-        }
-        .container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border: 2px solid #ccc;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            text-align: center;
-            background-color: #ffffff;
-        }
-        tbody tr:nth-child(even) {
-            background-color: #D7E8D8;
-        }
-        tbody tr:nth-child(odd) {
-            background-color: #ECEFF1;
-        }
-    </style>
 </head>
 <body>
     {{> nevcounselor}}
-    <div class="container">
-        <h1>Student Details</h1>
+    <div class="myCases">
+        <h1>My Cases</h1>
         <table>
             <thead>
                 <tr>
@@ -50,6 +19,7 @@
                     <th>Name</th>
                     <th>Issue</th>
                     <th>Description</th>
+                    <th>Prescription</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,9 +28,10 @@
                     <td>{{serialNo}}</td>
                     <td>{{date}}</td>
                     <td>{{time}}</td>
-                    <td><a href="/profile/{{studentId}}">{{studentName}}</a></td>
+                    <td><a href="/studentsprofile/{{studentId}}">{{studentName}}</a></td>
                     <td>{{issue}}</td>
                     <td>{{description}}</td>
+                    <td>{{prescription}}</td>
                 </tr>
                 {{/each}}
             </tbody>

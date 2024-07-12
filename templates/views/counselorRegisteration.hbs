@@ -4,18 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniWellness Hub - Counselor Registration</title>
-    <link rel="stylesheet" href="/CSS/counselor.css">
+    <link rel="stylesheet" href="/CSS/style.css">
 </head>
 <body>
-    {{> counselornav}}
-    <div class="registration">
+    {{>navbar}}
+    <div class="counselorRegistration">
         <h2>Counselor Registration</h2>
         <form id="counselorRegistrationForm">
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="phone" placeholder="Contact No." required>
             <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="degree" placeholder="Degree" required>
+            
+            <select name="type" required>
+                <option value="" disabled selected>Type</option>
+                <option value="Psychiatrist">Psychiatrist</option>
+                <option value="Psychologist">Psychologist</option>
+                <option value="Counselor">Counselor</option>
+            </select>
+            
+            <select name="degree" required>
+                <option value="" disabled selected>Degree</option>
+                <option value="MBBS">MBBS</option>
+                <option value="MD">MD</option>
+                <option value="PhD">PhD</option>
+                <option value="PsyD">PsyD</option>
+                <option value="MSc">MSc</option>
+                <option value="MA">MA</option>
+                <option value="MSW">MSW</option>
+                <option value="BSc">BSc</option>
+                <option value="BA">BA</option>
+                <option value="MPhil">MPhil</option>
+                <option value="Diploma in Counseling">Diploma in Counseling</option>
+                <option value="Other">Other</option>
+            </select>
+
             <input type="number" name="experience" placeholder="Years of Experience" required>
             <input type="text" name="otherDetails" placeholder="Other Details">
             <button type="submit">Register</button>
@@ -35,6 +58,11 @@
                 data[key] = value;
             });
 
+            if (data.phone.length !== 10) {
+                alert('Invalid Phone Number');
+                return;
+            }
+
             // Example of sending JSON data to the backend using fetch API
             try {
                 const response = await fetch('/registerCounselor', {
@@ -47,6 +75,7 @@
                 const result = await response.json();
                 if (result.success) {
                     alert(result.message);
+                    window.location.href = '/signInCounselor';
                 } else {
                     alert(result.message);
                 }

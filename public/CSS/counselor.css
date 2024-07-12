@@ -6,6 +6,8 @@ body, html {
     background-position: center;
 }
 
+
+
 /*Naviagation Bar*/
 .nav {
     width: 100%;
@@ -57,87 +59,196 @@ body, html {
     border-radius: 5px;
 }
 
+.nav a:hover {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
 
-/* Registration Page */
-.registration {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+.nav a.active {
+    background-color: black;
+    color: black;
+}
+
+
+
+/* Create Blog Page */
+.create-blog-container {
+    padding: 40px; /* Matching the padding */
+    background-color: rgba(255, 255, 255, 0.8); /* Matching the background color */
+    border-radius: 10px; /* Matching the border radius */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Matching the box shadow */
+    max-width: 800px; /* Matching the max-width */
+    margin: 100px auto; /* Center the container */
     text-align: center;
-    margin: 60px auto; /* Center horizontally */
-    width: 300px;
-    position: relative;
-    top: 50%;
-    transform: translateY(8%);
+    font-size: 18px; /* Matching the font size */
 }
-.registration h2 {
-    margin-bottom: 20px;
-    color: #333;
+
+.create-blog-container h1 {
+    text-align: center; /* Matching the text alignment */
+    font-size: 36px; /* Matching the font size */
+    color: #333; /* Matching the color */
+    margin-bottom: 20px; /* Ensure there is some space below the heading */
 }
-.registration input {
-    margin: 10px 0;
-    padding: 10px;
-    width: 92%;
+
+.create-blog-form input[type="text"],
+.create-blog-form textarea {
+    width: 95%; /* Ensuring the width is sufficient */
+    padding: 15px; /* Sufficient padding for input and textarea */
+    margin: 10px 0; /* Matching the spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px; /* Matching the font size */
+    color: rgb(27, 26, 26); /* Matching the text color */
 }
-.registration button {
-    padding: 10px 20px;
-    color: white;
+
+.create-blog-form button {
+    padding: 15px 30px; /* Sufficient padding for the button */
     background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-.registration a {
-    display: block;
-    text-decoration: none;
-    color: #4CAF50;
-    margin-top: 10px;
+    font-size: 18px; /* Matching the font size */
+    margin-top: 20px; /* Adding some space above the button */
 }
 
-/* SignIn Page */
-.signin {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+.create-blog-form button:hover {
+    background-color: #45a049;
+}
+
+
+
+/*Help RequestsList*/
+.helpRequestsList {
+    max-width: 1000px;
+    margin: 80px auto;
+}
+.helpRequestsList h1 {
     text-align: center;
-    margin: 60px auto; /* Center horizontally */
-    width: 300px;
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
-}
-.signin h2 {
     margin-bottom: 20px;
-    color: #333;
 }
-.signin input {
-    margin: 10px 0;
-    padding: 10px;
-    width: 92%;
-    max-width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.signin button {
-    padding: 10px 20px;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.helpRequestsList table {
     width: 100%;
-    max-width: 300px;
-    margin-top: 10px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc;
 }
-.signin a {
-    display: block;
+.helpRequestsList th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.helpRequestsList th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.helpRequestsList tbody tr:nth-child(even) {
+    background-color: #D7E8D8;
+}
+.helpRequestsList tbody tr:nth-child(odd) {
+    background-color: #ECEFF1;
+}
+.helpRequestsList .edit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
     text-decoration: none;
-    color: #4CAF50;
-    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 1px;
+    cursor: pointer;
+}
+
+/*Students Profile Page for Counselor*/
+.studentsProfile {
+    max-width: 800px;
+    margin: 80px auto;
+}
+.studentsProfile h1 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+.studentsProfile .basic-details {
+    margin-bottom: 40px;
+}
+.studentsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.studentsProfile .basic-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+.studentsProfile .basic-details li {
+    margin-bottom: 8px;
+}
+.studentsProfile table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+}
+.studentsProfile th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.studentsProfile th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.studentsProfile tbody tr:nth-child(even) {
+    background-color: #D7E8D8;
+}
+.studentsProfile tbody tr:nth-child(odd) {
+    background-color: #ECEFF1;
+}
+.studentsProfile .basic-details {
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+.studentsProfile .basic-details h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+/*My Cases*/
+.myCases {
+    max-width: 1000px;
+    margin: 80px auto;
+}
+.myCases h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.myCases table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+}
+.myCases th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.myCases th {
+    text-align: center;
+    background-color: #ffffff;
+}
+.myCases tbody tr:nth-child(even) {
+    background-color: #D7E8D8;
+}
+.myCases tbody tr:nth-child(odd) {
+    background-color: #ECEFF1;
 }

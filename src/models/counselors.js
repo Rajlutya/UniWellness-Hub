@@ -19,9 +19,17 @@ const counselorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true,
+        enum: ['Psychiatrist', 'Psychologist', 'Counselor']
+    },
     degree: {
         type: String,
-        required: true
+        required: true,
+        enum: [
+            'MBBS', 'MD', 'PhD', 'PsyD', 'MSc', 'MA', 'MSW', 'BSc', 'BA', 'MPhil', 'Diploma in Counseling', 'Other'
+        ]
     },
     experience: {
         type: Number,
